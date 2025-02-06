@@ -1,0 +1,99 @@
+#Background 
+Rect(0,0,400,400, fill = "Navy")
+Rect(0,300,400,400,fill = "Green")
+
+moon = Group(
+Circle(90,50, 30, fill = "yellow"),
+Circle(100,50,30, fill = "Navy"))
+
+#stars
+Circle(50,50,2, fill = "white")
+Circle(300,70,3, fill = "white")
+Circle(100,150,2, fill = "white")
+Circle(350,120,3, fill = "white")
+Circle(30,200,2, fill = "white")
+Circle(270,180,2, fill = "white")
+Circle(380,50,3, fill = "white")
+Circle(250,30,2, fill = "white")
+Circle(80,90,2, fill = "white")
+Circle(320,250,2, fill = "white")
+Circle(40,120,2, fill = "white")
+Circle(200,20,3, fill = "white")
+Circle(50,50,2, fill = "white")
+Circle(150,100,2, fill = "white")
+Circle(360,170,2, fill = "white")
+
+iss = Group(
+Rect(350, 20, 7, 14, fill = "silver"),
+Rect(336,23, 14,7, fill = "dodgerBlue"),
+Rect(357, 23, 14, 7, fill = "dodgerBlue"))
+
+laser = Polygon(200,80,50,400,350,400,fill = 'chartreuse')
+
+UFO = Group(
+Oval(200,100,190,60,fill = "white",border = rgb(0,0,0),borderWidth = 4),
+Oval(200,100,130,40, fill = "white", border = rgb(0,0,122), borderWidth = 4),
+Arc(200,100,90,120,270,180, fill = 'springGreen'),
+Arc(200,100,70,100,270,180, fill="white",border="black",borderWidth = 4),
+Circle(200,85,11,fill = "green"),
+Rect(187,74,10,2,fill = "green",rotateAngle = 50),
+Circle(190,72.5,2,fill = "green"),
+Rect(203,74,10,2,fill = "green",rotateAngle = 130),
+Circle(210,72.5,2,fill = "green"),
+Oval(195,82,7,5),
+Oval(205,82,7,5),
+Oval(200,89,7,2))
+
+cow= Group( 
+Circle(200,300,60,fill = "white",border = "Black",borderWidth = 5),
+Arc(200,220,80,125,-270,180,fill = "white", border="black",borderWidth = 5),
+Oval(200,260,30,20,fill = "Pink"),
+Circle(193,260,2),
+Circle(207,260,2),
+Circle(180,240,7),
+Circle(220,240,7),
+Arc(200,230,90,80,270,180,border = "white"),
+Rect(120,270, 40,20,fill = "white",border = "black",borderWidth = 3),
+Rect(120,270, 10,20),
+Rect(240,270, 40,20,fill = "white",border = "black",borderWidth = 3),
+Rect(270,270, 10,20),
+Rect(170,345, 20,30,fill = "white",border = "black",borderWidth = 3),
+Rect(170,365, 20,10),
+Rect(210,345, 20,30,fill = "white",border = "black",borderWidth = 3),
+Rect(210,365, 20,10),
+Oval(240,290,30,40),
+Oval(160,280,30,20),
+Oval(182,350,25,20),
+Oval(217,343,40,20,rotateAngle = 163),
+Circle(180,310,20))
+
+
+
+
+# animations for set
+UFO.centerY = -60
+cow.centerX = -60
+laser.visible = False
+app.count = 0
+moon.centerX = -10
+
+def onStep():
+    app.count += 1
+    iss.rotateAngle += 10000
+    moon.centerX += 0.5
+    if app.count < 70:
+        if cow.centerX != 200:
+            cow.centerX += 5
+        if cow.centerX == 200:
+            if UFO.centerY != 80:
+                UFO.centerY += 10
+            if UFO.centerY == 80:
+                laser.visible = True
+    if app.count > 70 and app.count <100:
+        cow.rotateAngle += 50
+    if app.count > 100 and app.count < 120:
+        cow.visible = False
+        laser.visible = False
+    if app.count > 120 and app.count < 1000:
+        UFO.centerX += 10
+        UFO.centerY -= 10
